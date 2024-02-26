@@ -1,4 +1,4 @@
-import handlebars from '@jaredwray/fumanchu';
+import * as Handlebars from '@jaredwray/fumanchu';
 //import * as iconv from 'iconv-lite';
 import { IExecuteFunctions } from 'n8n-core';
 import {
@@ -216,7 +216,7 @@ export class DocumentGenerator implements INodeType {
       template = await this.helpers.request(templateURL);
     }
 
-    const templateHelper = handlebars.compile(template);
+    const templateHelper = Handlebars.compile(template);
 
     let key = 'text';
     if (customOutputKey) {
