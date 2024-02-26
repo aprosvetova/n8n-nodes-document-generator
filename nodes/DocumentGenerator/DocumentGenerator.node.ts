@@ -1,4 +1,4 @@
-import * as Handlebars from 'handlebars';
+import handlebars from '@jaredwray/fumanchu';
 //import * as iconv from 'iconv-lite';
 import { IExecuteFunctions } from 'n8n-core';
 import {
@@ -15,7 +15,7 @@ import {
 export class DocumentGenerator implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'DocumentGenerator',
-    name: 'DocumentGenerator',
+    name: 'documentGenerator',
     icon: 'file:DocumentGenerator.svg',
     group: ['transform'],
     version: 1,
@@ -216,13 +216,13 @@ export class DocumentGenerator implements INodeType {
       template = await this.helpers.request(templateURL);
     }
 
-    const templateHelper = Handlebars.compile(template);
+    const templateHelper = handlebars.compile(template);
 
     let key = 'text';
     if (customOutputKey) {
       key = this.getNodeParameter('outputKey', 0) as string;
     }
-    
+
     if (oneTemplate) {
       var cleanedItems = items.map(function (item) {
         return item.json;
